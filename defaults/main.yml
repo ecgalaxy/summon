@@ -1,0 +1,4 @@
+---
+summon_path: "/usr/local/bin"
+summon_bin: "/usr/local/bin/summon"
+summon_installer: "https://raw.githubusercontent.com/cyberark/summon/master/install.sh"
