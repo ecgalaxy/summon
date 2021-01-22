@@ -1,0 +1,12 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Check summon version
+    command: summon --version
+    register: output
+  - name: Assert that summon is installed
+    assert:
+      that:
+      - "'summon version' in output.stdout"

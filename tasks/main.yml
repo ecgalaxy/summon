@@ -1,0 +1,23 @@
+---
+- name: Check if summon is already installed
+  stat:
+    path: "{{ summon_bin }}"
+  register: __summon_bin
+
+- block:
+  - name: Download summon installer
+    get_url:
+      url: "{{ summon_installer }}"
+      dest: /tmp/summon-installer.sh
+      mode: 0655
+
+  - name: Install summon
+    command: "/tmp/summon-installer.sh"
+    become: true
+
+  - name: Remove summon installer
+    file:
+      path: /tmp/summon-installer.sh
+      state: absent
+
+  when: not __summon_bin.stat.exists
