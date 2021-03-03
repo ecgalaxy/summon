@@ -1,23 +1,42 @@
 ---
-- name: Check if summon is already installed
-  stat:
-    path: "{{ summon_bin }}"
-  register: __summon_bin
+- name: Ensure summon lib folder exists
+  file:
+    path: "{{ summon_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  become: true
 
-- block:
-  - name: Download summon installer
-    get_url:
-      url: "{{ summon_installer }}"
-      dest: /tmp/summon-installer.sh
-      mode: 0655
+- name: Download summon archive
+  get_url:
+    url: "{{ summon_download_url }}"
+    dest: /tmp/summon.tar.gz
+    mode: 0644
+    checksum: "{{ summon_checksum }}"
+  changed_when: false
 
-  - name: Install summon
-    command: "/tmp/summon-installer.sh"
-    become: true
+- name: Extract summon archive
+  unarchive:
+    src: /tmp/summon.tar.gz
+    dest: "{{ summon_path }}"
+    creates: "{{ summon_path }}/summon"
+    owner: root
+    group: root
+    remote_src: yes
+  become: true
 
-  - name: Remove summon installer
-    file:
-      path: /tmp/summon-installer.sh
-      state: absent
+- name: Remove summon archive
+  file:
+    path: /tmp/summon.tar.gz
+    state: absent
+  changed_when: false
 
-  when: not __summon_bin.stat.exists
+- name: Create summon symlink
+  file:
+    src: "{{ summon_path }}/summon"
+    dest: "{{ summon_bin }}"
+    owner: root
+    group: root
+    state: link
+  become: true
