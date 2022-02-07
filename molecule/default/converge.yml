@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "Include summon"
+    - name: Include summon
       include_role:
         name: "summon"
   environment:

@@ -12,7 +12,7 @@ Requirements
 Role Variables
 --------------
 
-None.
+See defaults.
 
 Dependencies
 ------------
@@ -22,12 +22,18 @@ Dependencies
 Example Playbook
 ----------------
 
-TODO.
+    - hosts: all
+      roles:
+        - ecgalaxy.bootstrap
+        - ecgalaxy.common_packages
+        - ecgalaxy.summon
 
 License
 -------
 
-EUPL-1.2
+Copyright the European Union 2022.
+
+Licensed under the EUPL-1.2 or later.
 
 Author Information
 ------------------
