@@ -1,6 +1,6 @@
 ---
 - name: Ensure summon lib folder exists
-  file:
+  ansible.builtin.file:
     path: "{{ summon_path }}"
     state: directory
     owner: root
@@ -9,7 +9,7 @@
   become: true
 
 - name: Download summon archive
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ summon_download_url }}"
     dest: /tmp/summon.tar.gz
     mode: 0644
@@ -17,7 +17,7 @@
   changed_when: false
 
 - name: Extract summon archive
-  unarchive:
+  ansible.builtin.unarchive:
     src: /tmp/summon.tar.gz
     dest: "{{ summon_path }}"
     creates: "{{ summon_path }}/summon"
@@ -27,13 +27,13 @@
   become: true
 
 - name: Remove summon archive
-  file:
+  ansible.builtin.file:
     path: /tmp/summon.tar.gz
     state: absent
   changed_when: false
 
 - name: Create summon symlink
-  file:
+  ansible.builtin.file:
     src: "{{ summon_path }}/summon"
     dest: "{{ summon_bin }}"
     owner: root

@@ -4,9 +4,9 @@
   gather_facts: false
   tasks:
   - name: Check summon version
-    command: summon --version
+    ansible.builtin.command: summon --version
     register: output
   - name: Assert that summon is installed
-    assert:
+    ansible.builtin.assert:
       that:
       - "'summon version' in output.stdout"
