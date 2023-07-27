@@ -1,6 +1,6 @@
 ---
-summon_version: 0.9.4
+summon_version: 0.9.6
 summon_download_url: "https://github.com/cyberark/summon/releases/download/v{{ summon_version }}/summon-linux-amd64.tar.gz"
-summon_checksum: "sha256:79e7ed0bf023a909b758127d596960517b7dbc01c1a71bc301cfdbf2bc302ed9"
+summon_checksum: "sha256:fd071cec433bcfe537cf6e7742527369eb908f6c9471c755544c52b2512ab4ac"
 summon_path: "/opt/summon/{{ summon_version }}"
 summon_bin: "/usr/local/bin/summon"
