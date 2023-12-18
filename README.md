@@ -6,8 +6,7 @@ Installs summon - https://cyberark.github.io/summon/
 Requirements
 ------------
 
-* tar
-* wget
+- The `unzip` command, which can be provided by the `ecgalaxy.common_packages` role.
 
 Role Variables
 --------------
@@ -17,7 +16,7 @@ See defaults.
 Dependencies
 ------------
 
-* ecgalaxy.common_packages
+- optional: ecgalaxy.common_packages
 
 Example Playbook
 ----------------
