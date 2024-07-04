@@ -5,14 +5,14 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: 'u=rwx,go=rx'
   become: true
 
 - name: Download summon archive
   ansible.builtin.get_url:
     url: "{{ summon_download_url }}"
     dest: /tmp/summon.tar.gz
-    mode: 0644
+    mode: 'u=rw,go=r'
     checksum: "{{ summon_checksum }}"
   changed_when: false
 
@@ -23,7 +23,7 @@
     creates: "{{ summon_path }}/summon"
     owner: root
     group: root
-    remote_src: yes
+    remote_src: true
   become: true
 
 - name: Remove summon archive
