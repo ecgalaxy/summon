@@ -27,6 +27,20 @@ Example Playbook
         - ecgalaxy.common_packages
         - ecgalaxy.summon
 
+One-liner
+---------
+
+    bash <(curl -s https://code.europa.eu/-/snippets/1/raw/main/ansible-role.sh) ecgalaxy.summon
+
+See [ansible-role](https://code.europa.eu/-/snippets/1) for instructions.
+
+Please verify the script integrity first.
+
+Upgrading
+---------
+
+In order to upgrade, reexecute this Ansible role after a new version has been released.
+
 License
 -------
 
